@@ -6,13 +6,34 @@
 #include <cstdlib>
 #include <iostream>
 
+#include <boost/lambda/lambda.hpp>
+#include <iterator>
+#include <algorithm>
+
 using namespace std;
+
+int boostTest()
+{
+
+    using namespace boost::lambda;
+    typedef std::istream_iterator<int> in;
+
+    std::for_each(
+        in(std::cin), in(), std::cout << (_1 * 3) << " " );
+
+    return 0;
+
+}
 
 int main(int argcount, char* args[])
 {
     int celsius;
     int fahrenheit;
     int factor;
+
+    boostTest();
+
+    return 0;
 
     cout << "Enter the temperature in Celsius: ";
     cin >> celsius;
@@ -30,6 +51,8 @@ int main(int argcount, char* args[])
     cout << "Press Enter to continue..." << endl;
     cin.ignore(10, '\n');
     cin.get();
+
+
 
     return 0;
 }
