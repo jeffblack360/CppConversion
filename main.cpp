@@ -12,6 +12,32 @@
 
 using namespace std;
 
+class Cents
+{
+private:
+    int m_nCents;
+
+public:
+    Cents(int nCents)
+    {
+        m_nCents = nCents;
+    }
+
+    // Add Cents + Cents
+    friend Cents operator+(const Cents &c1, const Cents &c2);
+
+    int GetCents()
+    {
+        return m_nCents;
+    }
+
+};
+
+Cents operator+(const Cents &c1, const Cents &c2)
+{
+    return Cents(c1.m_nCents + c2.m_nCents);
+}
+
 int boostTest()
 {
 
@@ -25,15 +51,25 @@ int boostTest()
 
 }
 
-int main(int argcount, char* args[])
+int centsTest()
 {
+    Cents cCents1(6);
+    Cents cCents2(8);
+
+    Cents cCentsSum = cCents1 + cCents2;
+
+    cout << "I have " << cCentsSum.GetCents() << " cents." << endl;
+
+    return 0;
+
+}
+
+int conversionTest()
+{
+
     int celsius;
     int fahrenheit;
     int factor;
-
-    boostTest();
-
-    return 0;
 
     cout << "Enter the temperature in Celsius: ";
     cin >> celsius;
@@ -52,7 +88,16 @@ int main(int argcount, char* args[])
     cin.ignore(10, '\n');
     cin.get();
 
+    return 0;
+}
 
+int main(int argc, char* args[])
+{
+
+    centsTest();
+    //conversionTest();
+    // boostTest();
 
     return 0;
+
 }
